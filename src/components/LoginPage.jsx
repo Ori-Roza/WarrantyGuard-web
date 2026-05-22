@@ -14,15 +14,15 @@ export default function LoginPage({ lang = 'en' }) {
     setLoading(true)
     setError(null)
 
-    const { error: otpError } = await supabase.auth.signInWithOtp({
+    const { error } = await supabase.auth.signInWithOtp({
       email,
       options: {
-        redirectTo: window.location.origin + window.location.pathname,
+        emailRedirectTo: window.location.origin + window.location.pathname,
       },
     })
 
-    if (otpError) {
-      setError(otpError.message)
+    if (error) {
+      setError(error.message)
       setLoading(false)
       return
     }
