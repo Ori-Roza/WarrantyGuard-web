@@ -14,7 +14,7 @@ export default function LoginPage({ lang = 'en' }) {
     setLoading(true)
     setError(null)
 
-    await supabase.auth.signInWithOtp({
+    const { error: otpError } = await supabase.auth.signInWithOtp({
       email,
       options: {
         redirectTo: window.location.origin + window.location.pathname,
